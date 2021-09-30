@@ -1,0 +1,55 @@
+{
+ "properties": {
+  "displayName": "Function App should only be accessible over HTTPS",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "App Service",
+   "createdBy": "7c79820b-82f3-4802-8558-e3c360bd2b87",
+   "createdOn": "2021-09-09T12:46:19.5228689Z",
+   "updatedBy": "7c79820b-82f3-4802-8558-e3c360bd2b87",
+   "updatedOn": "2021-09-15T18:14:59.4032033Z"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Disabled",
+     "Deny"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Web/sites"
+     },
+     {
+      "field": "kind",
+      "like": "functionapp*"
+     },
+     {
+      "field": "Microsoft.Web/sites/httpsOnly",
+      "equals": "false"
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Management/managementGroups/b230f9be-53d7-4eab-a37c-a25cbc096039/providers/Microsoft.Authorization/policyDefinitions/Deny-AppServiceFunctionApp-http",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "Deny-AppServiceFunctionApp-http"
+}

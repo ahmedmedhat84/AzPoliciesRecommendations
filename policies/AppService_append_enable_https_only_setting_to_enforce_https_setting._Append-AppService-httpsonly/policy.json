@@ -1,0 +1,56 @@
+{
+ "properties": {
+  "displayName": "AppService append enable https only setting to enforce https setting.",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Appends the AppService sites object to ensure that  HTTPS only is enabled for  server/service authentication and protects data in transit from network layer eavesdropping attacks. Please note Append does not enforce compliance use then deny.",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "App Service",
+   "createdBy": "7c79820b-82f3-4802-8558-e3c360bd2b87",
+   "createdOn": "2021-09-30T08:50:21.4260871Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Append",
+     "Disabled"
+    ],
+    "defaultValue": "Append"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Web/sites"
+     },
+     {
+      "field": "Microsoft.Web/sites/httpsOnly",
+      "notequals": true
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]",
+    "details": [
+     {
+      "field": "Microsoft.Web/sites/httpsOnly",
+      "value": true
+     }
+    ]
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Management/managementGroups/EMG/providers/Microsoft.Authorization/policyDefinitions/Append-AppService-httpsonly",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "Append-AppService-httpsonly"
+}

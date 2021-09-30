@@ -1,14 +1,14 @@
 {
  "properties": {
-  "displayName": "Deploy Azure Defender for ACR",
+  "displayName": "Deploy Azure Defender for Virtual Machines",
   "policyType": "Custom",
   "mode": "All",
-  "description": "Deploy the Azure Defender settings for Azure Container Registry",
+  "description": "Deploy the Azure Defender settings in Azure Security Center for Virtual Machines",
   "metadata": {
    "version": "1.0.0",
    "category": "Security Center",
    "createdBy": "7c79820b-82f3-4802-8558-e3c360bd2b87",
-   "createdOn": "2021-09-30T08:50:21.5492033Z",
+   "createdOn": "2021-09-30T08:50:21.535502Z",
    "updatedBy": null,
    "updatedOn": null
   },
@@ -51,7 +51,7 @@
     "effect": "[parameters('effect')]",
     "details": {
      "type": "Microsoft.Security/pricings",
-     "name": "ContainerRegistry",
+     "name": "VirtualMachines",
      "deploymentScope": "Subscription",
      "existenceScope": "Subscription",
      "roleDefinitionIds": [
@@ -94,7 +94,7 @@
          {
           "type": "Microsoft.Security/pricings",
           "apiVersion": "2018-06-01",
-          "name": "ContainerRegistry",
+          "name": "VirtualMachines",
           "properties": {
            "pricingTier": "[parameters('pricingTier')]"
           }
@@ -108,7 +108,7 @@
    }
   }
  },
- "id": "/providers/Microsoft.Management/managementGroups/EMG/providers/Microsoft.Authorization/policyDefinitions/Deploy-ASC-Defender-ACR",
+ "id": "/providers/Microsoft.Management/managementGroups/EMG/providers/Microsoft.Authorization/policyDefinitions/Deploy-ASC-Defender-VMs",
  "type": "Microsoft.Authorization/policyDefinitions",
- "name": "Deploy-ASC-Defender-ACR"
+ "name": "Deploy-ASC-Defender-VMs"
 }

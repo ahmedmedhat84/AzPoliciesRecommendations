@@ -1,0 +1,43 @@
+{
+ "properties": {
+  "displayName": "Deny the creation of private DNS",
+  "policyType": "Custom",
+  "mode": "Indexed",
+  "description": "This policy denies the creation of a private DNS in the current scope, used in combination with policies that create centralized private DNS in connectivity subscription",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Network",
+   "createdBy": "7c79820b-82f3-4802-8558-e3c360bd2b87",
+   "createdOn": "2021-09-30T08:50:21.4679955Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "field": "type",
+    "equals": "Microsoft.Network/privateDnsZones"
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Management/managementGroups/EMG/providers/Microsoft.Authorization/policyDefinitions/Deny-Private-DNS-Zones",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "Deny-Private-DNS-Zones"
+}
